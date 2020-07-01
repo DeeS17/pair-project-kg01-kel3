@@ -22,5 +22,8 @@
     "express": "^4.17.1",
     "pg": "^8.2.1",
     "sequelize": "^6.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
