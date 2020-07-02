@@ -10,10 +10,14 @@
     <% if(usernameLogged) { %>
         <div class="container">
             <h1>Add Transaction</h1>
+            <% if(alert) { %>
+                <%- include('partials/form-validation', {alert}); %>
+            <% } %>
             <form action="/transaction/create" method="post">
                 <div class="form-group">
                     <label for="customer">Name</label><br>
                     <select name="customer" id="customer" class="form-control">
+                        <option value=""> --- SELECT SELLERS --- </option>
                         <% users.forEach(user => { %>
                             <option value="<%= user.id %>"><%= user.name %></option>
                         <% }) %>

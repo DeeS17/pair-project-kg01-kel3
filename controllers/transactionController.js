@@ -1,4 +1,6 @@
 const {Transaction, User, TransactionDetail, Item} = require('../models/index.js');
+const {getTotalPrice} = require('../helpers/helpers-view.js');
+
 
 class TransactionController {
     static getTransactionRootHandler(req, res) {
@@ -16,7 +18,7 @@ class TransactionController {
         let usernameLogged = req.session.username
         User.findAll()
             .then((users) => {
-                res.render('form-add-transaction', {users, usernameLogged});
+                res.render('form-add-transaction', {users, usernameLogged, alert: req.query.message});
             })
             .catch((err) => {
                 res.send(err);
@@ -26,15 +28,18 @@ class TransactionController {
     static postTransactionAddHandler(req, res) {
         let usernameLogged = req.session.username
         const objTransaction = {
-            UserId: Number(req.body.customer)
+            UserId: req.body.customer === '' ? '' : Number(req.body.customer)
         }
         Transaction.create(objTransaction)
             .then(() => {
                 res.redirect('/transaction');
             })
             .catch((err) => {
-                console.log(err);
-                res.send(err);
+                let error = err.errors.map(er => {
+                    return er.message;
+                })
+
+                res.redirect(`/transaction/create?message=${error.join(', ')}`);
             })
     }
 
@@ -63,11 +68,39 @@ class TransactionController {
                 return Item.findAll();
             })
             .then(items => {
-                res.render('transaction-detail', {transaction, items, usernameLogged});
+                
+                res.render('transaction-detail', {transaction, items, usernameLogged, getTotalPrice, alert: req.query.message});
             })
             .catch(err => {
+                
                 res.send(err);
             })
+    }
+
+    static postTransactionDetailHandler(req, res) {
+        const TransactionId = Number(req.params.id);
+        const ItemId = Number(req.body.item) === 0 ? '' : Number(req.body.item);
+
+        const objTransactionItem = {
+            TransactionId,
+            ItemId,
+            quantity: req.body.quantity
+        }
+
+        console.log(objTransactionItem);
+        
+        TransactionDetail.create(objTransactionItem)
+            .then(() => {
+                res.redirect(`/transaction/${TransactionId}`);
+            })
+            .catch(err => {
+                let error = err.errors.map(er => {
+                    return er.message;
+                })
+
+                res.redirect(`/transaction/${TransactionId}?message=${error.join(', ')}`);
+            })
+
     }
 }
 

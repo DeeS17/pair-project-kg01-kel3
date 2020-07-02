@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('partials/page-title') %>
+</head>
+<body>
+    <%- include('partials/navbar-seller', {usernameLogged}) %>
+    <% if(usernameLogged) { %>
+        <div class="container">
+            <div>
+                <h2>Add Detail</h2>
+                <% if(alert) { %>
+                    <%- include('partials/form-validation', {alert}); %>
+                <% } %>
+                <form action="/transaction/<%= transaction.id %>" method="post">
+                    <div class="form-group">
+                        <label for="item">Item:</label><br>
+                        <select class="form-control" name="item" id="item">
+                            <option value=""> --- Select --- </option>
+                            <% items.forEach(item => { %>
+                                <option value="<%= item.id %>"><%= item.name %></option>
+                            <% }) %>
+                        </select>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label><br>
+                        <input type="text" class="form-control" name="quantity" id="quantity">
+                    </div><br>
+                    <div class="form-group">
+                        <button class="btn btn-outline-primary btn-sm" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <h2>Transaction Detail</h2>
+                <table class='table table-hover'>
+                    <thead>
+                        <tr>
+                            <th>Transaction Number</th>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% transaction.TransactionDetails.forEach(data => { %>
+                            <tr>
+                                <td><%= transaction.getTransactionNumber() %></td>
+                                <td><%= data.Item.name %></td>
+                                <td><%= data.quantity %></td>
+                               <td><%= getTotalPrice(data.quantity, data.Item.price) %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <%- include('partials/footer') %>
+    <% } %>
+</body>
+</html>
