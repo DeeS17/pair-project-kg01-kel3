@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('partials/page-title', {title: 'Movie Application'}); %>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="container">
+        <h1>List Casts</h1>
+        <div>
+            <a href="/casts/add" class="btn btn-outline-success btn-sm">Add cast</a>
+        </div><br>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Birth Year</th>
+                    <th>Phone Number</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% casts.forEach(cast => { %>
+                    <tr>
+                        <td><%= cast.name %></td>
+                        <td><%= cast.birth_year %></td>
+                        <td><%= cast.phone_number %></td>
+                        <td><%= cast.gender %></td>
+                        <td>
+                            <a href="/casts/edit/<%= cast.id %>"  class="btn btn-outline-warning btn-sm">Edit</a>
+                            <a href="/casts/delete/<%= cast.id %>" class="btn btn-outline-danger btn-sm" onclick="return confirm('Do you really want to delete <%= cast.name %>')">Delete</a>
+                            <a href="/casts/<%= cast.id %>" class="btn btn-outline-primary btn-sm">See Movies</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
