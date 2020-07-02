@@ -1,4 +1,6 @@
-const { User } = require('../models/index') 
+const { User } = require('../models/index');
+const nodemailer = require('nodemailer');
+const { normalize } = require('path');
 
 class RegisterController {
     static registerForm(req, res) {
@@ -23,7 +25,27 @@ class RegisterController {
             email: req.body.email,
         })
         .then(user => {
-            res.redirect(`/login/?success=${req.body.name}`)
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: `tokohijauadventure@gmail.com`,
+                    pass: `hacktiv8`
+                }
+            });
+
+            const mailOptions = {
+                from: `cvmakmurianusantara@gmail.com`,
+                to: req.body.email,
+                subject: `Thanks for your registration`,
+                html: `<h1> Mini E-Commerce </h1> <br><br>
+                <p> Thanks for your registration ${req.body.name} </p>`
+            };
+
+            transporter.sendMail(mailOptions, (err, info) => {
+                if(err) throw err;
+                else res.redirect(`/login/?success=${req.body.name}`)
+            })
+
         })
         .catch(err => {
             let errors = err.errors.map(error => error.message)
