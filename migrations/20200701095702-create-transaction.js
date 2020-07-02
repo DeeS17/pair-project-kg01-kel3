@@ -18,10 +18,6 @@ module.exports = {
         onUpdate: 'RESTRICT',
         type: Sequelize.INTEGER
       },
-      quantity: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

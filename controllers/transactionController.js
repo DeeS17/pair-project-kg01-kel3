@@ -16,7 +16,7 @@ class TransactionController {
         let usernameLogged = req.session.username
         User.findAll()
             .then((users) => {
-                res.render('form-add-transaction', (users, usernameLogged));
+                res.render('form-add-transaction', {users, usernameLogged});
             })
             .catch((err) => {
                 res.send(err);
@@ -26,13 +26,14 @@ class TransactionController {
     static postTransactionAddHandler(req, res) {
         let usernameLogged = req.session.username
         const objTransaction = {
-            CustomerId: Number(req.body.customer, usernameLogged)
+            UserId: Number(req.body.customer)
         }
         Transaction.create(objTransaction)
             .then(() => {
                 res.redirect('/transaction');
             })
             .catch((err) => {
+                console.log(err);
                 res.send(err);
             })
     }
