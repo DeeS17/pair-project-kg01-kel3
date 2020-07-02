@@ -1,3 +1,5 @@
+const {Op} = require('sequelize');
+
 'use strict';
 const {
   Model
@@ -16,6 +18,16 @@ module.exports = (sequelize, DataTypes) => {
       })
       Item.hasMany(models.TransactionDetail)
 
+    }
+
+    static findAllByKeyword(keyword) {
+      return this.findAll({
+        where: {
+          name: {
+            [Op.like]: `%${keyword}%`
+          }
+        }
+      })
     }
   };
   Item.init({
