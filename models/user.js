@@ -32,14 +32,10 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Please enter a valid email address'
         }
       }
-    },
-    role: DataTypes.STRING,
-    accessgroup: DataTypes.SMALLINT
+    }
   }, {
     hooks: {
       beforeCreate: (user, options) => {
-        if (user.role == 'admin') user.accessgroup = 2;
-        else user.accessgroup = 5;
 
         var salt = bcrypt.genSaltSync(10);
         var hash = bcrypt.hashSync(user.password, salt);

@@ -3,8 +3,13 @@ const { User } = require('../models/index')
 class RegisterController {
     static registerForm(req, res) {
         let usernameLogged = req.session.username;
+
+        let errors = req.query.err;
+        if(errors) errors = errors.split('\n');
+
+        // console.log(errors)
         
-        res.render('register', {title: `register`, usernameLogged})
+        res.render('register', {title: `register`, usernameLogged, errors})
     }
 
     static registerPost(req, res) {
@@ -16,12 +21,18 @@ class RegisterController {
             password: req.body.password,
             name: req.body.name,
             email: req.body.email,
-            role: req.body.role
         })
         .then(user => {
             res.redirect(`/login/?success=${req.body.name}`)
         })
-        .catch(err => res.redirect(`/register?err=${err.message}`))
+        .catch(err => {
+            let errors = err.errors.map(error => error.message)
+                .join('\n')
+
+            // console.log(errors)
+
+            res.redirect(`/register?err=${errors}`)
+        })
     }
 }
 
