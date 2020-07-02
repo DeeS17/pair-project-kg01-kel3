@@ -1,0 +1,22 @@
+const express = require('express');
+const router = express.Router();
+
+const Controller = require('../controllers/index');
+router.get('/', Controller.rootHandler);
+
+const register = require('./register-router');
+router.use('/register', register)
+
+const login = require('./login-router');
+router.use('/login', login);
+
+const admin = require('./admin-router');
+router.use('/admin', admin);
+
+const item = require('./item-router');
+router.use('/item', item);
+
+const user = require('./user-router');
+router.use('/user', user);
+
+module.exports = router
