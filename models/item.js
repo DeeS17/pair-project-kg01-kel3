@@ -19,10 +19,46 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Item.init({
-    name: DataTypes.STRING,
-    imageURL: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    stock: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Please input item's name!`
+        }
+      }
+    },
+    imageURL: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Please input item's image URL!`
+        },
+        isUrl: {
+          args: true,
+          msg: `Please input this field with URL format!`
+        }
+      }
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Please input item's price!`
+        }
+      }
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Please input item's stock!`
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Item',

@@ -10,6 +10,9 @@
     <% if(usernameLogged) { %>
         <div class="container">
             <h1>Add Item</h1>
+            <% if(alert) { %>
+                <%- include('partials/form-validation', {alert}); %>
+            <% } %>
             <form action="/item/create" method="post">
                 <div class="form-group">
                     <label for="name">Name</label><br>

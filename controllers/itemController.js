@@ -3,7 +3,7 @@ const {Item} = require('../models/index.js');
 class ItemController {
     static getItemAddHandler(req, res) {
         let usernameLogged = req.session.username
-        res.render('form-add-item', {usernameLogged});
+        res.render('form-add-item', {usernameLogged, alert: req.query.message});
     }
 
     static postItemAddHandler(req, res) {
@@ -19,7 +19,11 @@ class ItemController {
                 res.redirect('/');
             })
             .catch((err) => {
-                res.send(err);
+                let error = err.errors.map(er => {
+                    return er.message;
+                })
+
+                res.redirect(`/item/create?message=${error.join(', ')}`);
             })
     }
 
@@ -30,7 +34,7 @@ class ItemController {
             .then((item) => {
                 // console.log(item)
 
-                res.render('form-edit-item', {item, usernameLogged});
+                res.render('form-edit-item', {item, usernameLogged, alert: req.query.message});
             })
             .catch((err) => {
                 res.send(err);
@@ -53,8 +57,12 @@ class ItemController {
             .then(() => {
                 res.redirect('/');
             })
-            .catch(() => {
-                res.send(err);
+            .catch((err) => {
+                let error = err.errors.map(er => {
+                    return er.message;
+                })
+
+                res.redirect(`/item/update/${paramId}?message=${error.join(', ')}`);
             })
     }
 

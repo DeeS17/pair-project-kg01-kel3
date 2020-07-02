@@ -17,9 +17,23 @@ module.exports = (sequelize, DataTypes) => {
       })
       Transaction.hasMany(models.TransactionDetail)
     }
+
+    getTransactionNumber() {
+      return `MINIEC00${this.UserId}`;
+    }
+
+
   };
   Transaction.init({
-    UserId: DataTypes.INTEGER
+    UserId: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Please select the user!`
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Transaction',

@@ -1,4 +1,5 @@
 const {Item, User} = require('../models/index.js');
+const {timeDifference} = require('../helpers/helpers-view.js');
 
 class Controller {
 
@@ -8,7 +9,7 @@ class Controller {
         
         Item.findAll()
             .then((items) => {
-                res.render('index', {items, usernameLogged});
+                res.render('index', {items, usernameLogged, timeDifference});
             })
             .catch((err) => {
 

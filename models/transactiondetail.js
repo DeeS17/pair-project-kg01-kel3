@@ -11,13 +11,30 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      TransactionDetail.belongsTo(models.Item)
+      TransactionDetail.belongsTo(models.Transaction)
     }
   };
   TransactionDetail.init({
     TransactionId: DataTypes.INTEGER,
-    ItemId: DataTypes.INTEGER,
-    quantity: DataTypes.INTEGER,
-    totalPrice: DataTypes.INTEGER
+    ItemId: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Please select the item!`
+        }
+      }
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Please input item's quantity!`
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'TransactionDetail',

@@ -16,6 +16,7 @@
                         <th>Picture</th>
                         <th>Price</th>
                         <th>Stock</th>
+                        <th>Last Updated</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -26,6 +27,7 @@
                             <th><img src="<%= item.imageURL %>" alt=""></th>
                             <th><%= item.price %></th>
                             <th><%= item.stock %></th>
+                            <th><%= timeDifference(item.updatedAt) %></th>
                             <th>
                                 <a href="/item/update/<%= item.id %>">Update</a>
                                 <a href="/item/delete/<%= item.id %>">Delete</a>
