@@ -1,8 +1,26 @@
+<% if(usernameLogged) { %>
+
+<nav>
+    <a href="/"> home </a> |
+    <a href="/user"> user </a> |
+    <a href="/item"> item </a> 
+    <br><br>
+    <a href="/logout"> logout </a>     
+</nav>
+
+<br>
+
+<p> Hello <%= usernameLogged %> </p>
+
+
+<% } else { %>
+
 <nav>
     <a href="/"> home </a> |
     <a href="/register"> register </a> |
     <a href="/login"> login </a> |
-    <a href="/admin"> admin </a> |
     <a href="/user"> user </a> |
-    <a href="/item"> item </a> 
+    <a href="/item"> item </a>
 </nav>
+
+<% } %>

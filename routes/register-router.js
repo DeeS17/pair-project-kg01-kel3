@@ -4,7 +4,8 @@ const router = express.Router();
 const RegisterController = require('../controllers/registerController')
 
 router.get('/', RegisterController.registerForm);
-//Jika sudah ada form bisa dilanjutkan POST nya
+router.post('/', RegisterController.registerPost)
+
 
 
 module.exports = router
