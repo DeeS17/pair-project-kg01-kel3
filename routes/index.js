@@ -10,8 +10,8 @@ router.use('/register', register)
 const login = require('./login-router');
 router.use('/login', login);
 
-const admin = require('./admin-router');
-router.use('/admin', admin);
+const logout = require('./logout-router');
+router.use('/logout', logout);
 
 const item = require('./item-router');
 router.use('/item', item);
