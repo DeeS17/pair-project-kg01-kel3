@@ -12,11 +12,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      imageURL: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       price: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      quantity: {
+      stock: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
