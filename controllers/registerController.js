@@ -21,7 +21,7 @@ class RegisterController {
         .then(user => {
             res.redirect(`/login/?success=${req.body.name}`)
         })
-        .catch(err => res.redirect(`/register?err=${err.messange}`))
+        .catch(err => res.redirect(`/register?err=${err.message}`))
     }
 }
 

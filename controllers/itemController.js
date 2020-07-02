@@ -26,13 +26,11 @@ class ItemController {
     static getItemUpdateHandler(req, res) {
         const paramId = Number(req.params.id);
         let usernameLogged = req.session.username
-        Item.findByPk({
-            where: {
-                id: paramId
-            }
-        })
+        Item.findByPk(paramId)
             .then((item) => {
-                res.render('form-update-item', {item, usernameLogged});
+                // console.log(item)
+
+                res.render('form-edit-item', {item, usernameLogged});
             })
             .catch((err) => {
                 res.send(err);

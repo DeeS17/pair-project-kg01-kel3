@@ -9,7 +9,7 @@ class LoginController {
         // console.log(req.query)
         let errors = req.query.err
 
-        console.log(errors)
+        // console.log(errors)
 
         let usernameLogged = req.session.username
         res.render('Login', { title: `Login`, usernameLogged, errors})
