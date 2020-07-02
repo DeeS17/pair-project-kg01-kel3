@@ -1,6 +1,14 @@
+const {Item, User} = require('../models/index.js');
+
 class Controller {
-    static rootHandler(req, res) {
-        res.render('index', {title: `Home`})
+    static getRootHandler(req, res) {
+        Item.findAll()
+            .then((items) => {
+                res.render('index', {items});
+            })
+            .catch((err) => {
+                res.send(err);
+            })
     }
 }
 
