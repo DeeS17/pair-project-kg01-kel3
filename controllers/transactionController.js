@@ -1,11 +1,11 @@
 const {Transaction, User, TransactionDetail, Item} = require('../models/index.js');
-const {getTotalPrice} = require('../helpers/helpers-view.js');
+const {getTotalPrice, numberWithCommas} = require('../helpers/helpers-view.js');
 
 
 class TransactionController {
     static getTransactionRootHandler(req, res) {
         let usernameLogged = req.session.username
-        Transaction.findAll()
+        Transaction.allTransaction()
             .then((transactions) => {
                 res.render('index-transaction', {transactions, usernameLogged});
             })
@@ -27,6 +27,9 @@ class TransactionController {
 
     static postTransactionAddHandler(req, res) {
         let usernameLogged = req.session.username
+
+        // console.log(req.body)
+
         const objTransaction = {
             UserId: req.body.customer === '' ? '' : Number(req.body.customer)
         }
@@ -68,8 +71,10 @@ class TransactionController {
                 return Item.findAll();
             })
             .then(items => {
+
+                // console.log(JSON.stringify(transaction, null, 2) ) //tracker
                 
-                res.render('transaction-detail', {transaction, items, usernameLogged, getTotalPrice, alert: req.query.message});
+                res.render('transaction-detail', {transaction, items, usernameLogged, getTotalPrice, alert: req.query.message, numberWithCommas});
             })
             .catch(err => {
                 

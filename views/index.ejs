@@ -25,7 +25,7 @@
                         <tr>
                             <th><%= item.name %></th>
                             <th><img src="<%= item.imageURL %>" alt=""></th>
-                            <th><%= item.price %></th>
+                            <th><%= numberWithCommas(item.price)  %></th>
                             <th><%= item.stock %></th>
                             <th><%= timeDifference(item.updatedAt) %></th>
                             <th>
@@ -53,7 +53,7 @@
                         <tr>
                             <th><%= item.name %></th>
                             <th><img src="<%= item.imageURL %>" alt=""></th>
-                            <th><%= item.price %></th>
+                            <th><%= numberWithCommas(item.price) %></th>
                             <th><%= item.stock %></th>
                         </tr>
                     <% }) %>

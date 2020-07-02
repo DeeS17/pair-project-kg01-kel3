@@ -30,4 +30,8 @@ function timeDifference(previous) {
     }
 }
 
-module.exports = {getTotalPrice, timeDifference}
+function numberWithCommas(num) {
+    return 'Rp ' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+}
+
+module.exports = {getTotalPrice, timeDifference, numberWithCommas}

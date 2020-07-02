@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       Transaction.hasMany(models.TransactionDetail)
     }
 
+    static allTransaction() {
+      return this.findAll()
+    }
+
     getTransactionNumber() {
       return `MINIEC00${this.UserId}`;
     }

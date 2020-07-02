@@ -50,7 +50,7 @@
                                 <td><%= transaction.getTransactionNumber() %></td>
                                 <td><%= data.Item.name %></td>
                                 <td><%= data.quantity %></td>
-                               <td><%= getTotalPrice(data.quantity, data.Item.price) %></td>
+                               <td><%= numberWithCommas(getTotalPrice(data.quantity, data.Item.price))  %></td>
                             </tr>
                         <% }) %>
                     </tbody>
