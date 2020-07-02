@@ -2,7 +2,8 @@ const {Item} = require('../models/index.js');
 
 class ItemController {
     static getItemAddHandler(req, res) {
-        res.render('form-add-item');
+        let usernameLogged = req.session.username
+        res.render('form-add-item', {usernameLogged});
     }
 
     static postItemAddHandler(req, res) {
@@ -24,13 +25,14 @@ class ItemController {
 
     static getItemUpdateHandler(req, res) {
         const paramId = Number(req.params.id);
+        let usernameLogged = req.session.username
         Item.findByPk({
             where: {
                 id: paramId
             }
         })
             .then((item) => {
-                res.render('form-update-item', item);
+                res.render('form-update-item', {item, usernameLogged});
             })
             .catch((err) => {
                 res.send(err);
@@ -60,13 +62,14 @@ class ItemController {
 
     static getItemBuyHandler(req, res) {
         const paramId = Number(req.params.id);
+        let usernameLogged = req.session.username
         Item.findByPk({
             where: {
                 id: paramId
             }
         })
             .then((item) => {
-                res.render('form-buy-item', item);
+                res.render('form-buy-item', {item, usernameLogged});
             })
             .catch((err) => {
                 res.send(err);
