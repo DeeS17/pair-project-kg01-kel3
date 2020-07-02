@@ -60,40 +60,40 @@ class ItemController {
             })
     }
 
-    static getItemBuyHandler(req, res) {
-        const paramId = Number(req.params.id);
-        let usernameLogged = req.session.username
-        Item.findByPk({
-            where: {
-                id: paramId
-            }
-        })
-            .then((item) => {
-                res.render('form-buy-item', {item, usernameLogged});
-            })
-            .catch((err) => {
-                res.send(err);
-            })
-    }
+    // static getItemBuyHandler(req, res) {
+    //     const paramId = Number(req.params.id);
+    //     let usernameLogged = req.session.username
+    //     Item.findByPk({
+    //         where: {
+    //             id: paramId
+    //         }
+    //     })
+    //         .then((item) => {
+    //             res.render('form-buy-item', {item, usernameLogged});
+    //         })
+    //         .catch((err) => {
+    //             res.send(err);
+    //         })
+    // }
 
-    static postItemBuyHandler(req, res) {
-        const paramId = Number(req.params.id);
+    // static postItemBuyHandler(req, res) {
+    //     const paramId = Number(req.params.id);
         
-        const objItem = {
-            stock: req.body.stock
-        }
-        Item.update(objItem, {
-            where: {
-                id: paramId
-            }
-        })
-            .then(() => {
-                res.redirect('/');
-            })
-            .catch(() => {
-                res.send(err);
-            })
-    }
+    //     const objItem = {
+    //         stock: req.body.stock
+    //     }
+    //     Item.update(objItem, {
+    //         where: {
+    //             id: paramId
+    //         }
+    //     })
+    //         .then(() => {
+    //             res.redirect('/');
+    //         })
+    //         .catch(() => {
+    //             res.send(err);
+    //         })
+    // }
 
     static getItemDeleteHandler(req, res) {
         const paramId = Number(req.params.id);
@@ -111,10 +111,10 @@ class ItemController {
             });
     }
 
-    static getItemDetailHandler(req, res) {
-        const paramId = Number(req.params.id);
+    // static getItemDetailHandler(req, res) {
+    //     const paramId = Number(req.params.id);
 
-
+    // }
 /* class ItemController {
     static listItem(req, res) {
         let usernameLogged = req.session.username
@@ -126,7 +126,7 @@ class ItemController {
         res.render('item', {title: `item ${req.params.id}`, usernameLogged})
         */
 
-    }
+    
 }
 
 module.exports = ItemController;
