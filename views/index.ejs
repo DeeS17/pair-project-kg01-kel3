@@ -9,6 +9,12 @@
     <%- include('partials/navbar-seller', {usernameLogged}) %>
     <% if(usernameLogged) { %>
         <div class="container">
+            <div>
+                <form action="/" method="get">
+                    <input type="text" name="keyword" placeholder="Search by product name" value=''>
+                    <input type="submit" value="Search">
+                </form>
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -39,6 +45,12 @@
         </div>
     <% } else { %>
         <div class="container">
+            <div>
+                <form action="/" method="get">
+                    <input type="text" name="keyword" placeholder="Search by product name" value=''>
+                    <input type="submit" value="Search">
+                </form>
+            </div>
             <table class="table">
                 <thead>
                     <tr>

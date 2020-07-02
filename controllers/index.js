@@ -7,14 +7,29 @@ class Controller {
         let usernameLogged = req.session.username
         let roleLogged= req.session.role
         
-        Item.findAll()
-            .then((items) => {
-                res.render('index', {items, usernameLogged, timeDifference, numberWithCommas});
-            })
-            .catch((err) => {
+        const title = req.query;
 
-                res.send(err);
-            })
+        if(!title.keyword) {
+            Item.findAll()
+                .then((items) => {
+                    res.render('index', {items, usernameLogged, timeDifference, numberWithCommas});
+                })
+                .catch((err) => {
+    
+                    res.send(err);
+                })
+        } else {
+            const keyword = req.query.keyword;
+
+            Item.findAllByKeyword(keyword)
+                .then((items) => {
+                    res.render('index', {items, usernameLogged, timeDifference, numberWithCommas});
+                })
+                .catch((err) => {
+
+                    res.send(err);
+                })
+        }
       
 
 
