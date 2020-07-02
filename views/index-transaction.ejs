@@ -8,32 +8,27 @@
 <body>
     <%- include('partials/navbar-seller') %>
     <div class="container">
+        <a href="/transaction/create">Add Transaction</a>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Picture</th>
-                    <th>Price</th>
-                    <th>Stock</th>
+                    <th>No</th>
+                    <th>User Id</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <% items.forEach(item => { %>
+                <% transactions.forEach((transaction, index) => { %>
                     <tr>
-                        <th><%= item.name %></th>
-                        <th><img src="<%= item.imageURL %>" alt=""></th>
-                        <th><%= item.price %></th>
-                        <th><%= item.stock %></th>
+                        <th><%= index + 1 %></th>
+                        <th><%= transaction.UserId %></th>
                         <th>
-                            <a href="/item/update/<%= item.id %>">Update</a>
-                            <a href="/item/delete/<%= item.id %>">Delete</a>
+                            <a href="/transaction/<%= transaction.id %>">Detail</a>
                         </th>
                     </tr>
                 <% }) %>
             </tbody>
         </table>
     </div>
-
 </body>
 </html>
