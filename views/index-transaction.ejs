@@ -6,29 +6,31 @@
     <%- include('partials/page-title') %>
 </head>
 <body>
-    <%- include('partials/navbar-seller') %>
-    <div class="container">
-        <a href="/transaction/create">Add Transaction</a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>User Id</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% transactions.forEach((transaction, index) => { %>
+    <%- include('partials/navbar-seller', {usernameLogged}) %>
+    <% if(usernameLogged) { %>
+        <div class="container">
+            <a href="/transaction/create">Add Transaction</a>
+            <table class="table">
+                <thead>
                     <tr>
-                        <th><%= index + 1 %></th>
-                        <th><%= transaction.UserId %></th>
-                        <th>
-                            <a href="/transaction/<%= transaction.id %>">Detail</a>
-                        </th>
+                        <th>No</th>
+                        <th>User Id</th>
+                        <th>Action</th>
                     </tr>
-                <% }) %>
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    <% transactions.forEach((transaction, index) => { %>
+                        <tr>
+                            <th><%= index + 1 %></th>
+                            <th><%= transaction.UserId %></th>
+                            <th>
+                                <a href="/transaction/<%= transaction.id %>">Detail</a>
+                            </th>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
 </body>
 </html>
