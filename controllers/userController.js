@@ -1,6 +1,7 @@
 class UserController {
     static userHome(req, res) {
-        res.render('user', {title: `user`})
+        let usernameLogged = req.session.username;
+        res.render('user', {title: `User`, usernameLogged})
     }
 }
 

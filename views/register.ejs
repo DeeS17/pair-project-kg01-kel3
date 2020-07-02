@@ -6,7 +6,27 @@
     <title> <%= title %> </title>
 </head>
 <body>
-    <%- include('./partials/header.ejs') %>
+    <%- include('./partials/header.ejs', {usernameLogged}) %>
     <h1> <%= title %> </h1>
+
+    <form method="POST" action="/register">
+    Username: <br>
+    <input type="text" name="username" required>
+    <br><br>
+    Password: <br>
+    <input type="password" name="password" required>
+    <br><br>
+    Name: <br>
+    <input type="text" name="name" required>
+    <br><br>
+    Email: <br>
+    <input type="email" name="email" required>
+    <br><br>
+    Role: <br>
+    <input type="radio" name="role" value="user" required> user <br>
+    <input type="radio" name="role" value="admin" required> admin <br>
+    <br>
+    <input type="submit" value="Register">
+    </form>
 </body>
 </html>
