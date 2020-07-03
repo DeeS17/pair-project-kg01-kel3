@@ -13,7 +13,7 @@ class Controller {
             Item.findAll({
                 order: [
                     ['updatedAt', 'DESC']
-                ]
+                  ]
             })
                 .then((items) => {
                     res.render('index', {items, usernameLogged, timeDifference, numberWithCommas});

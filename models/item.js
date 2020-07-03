@@ -25,10 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         where: {
           name: {
             [Op.like]: `%${keyword}%`
-          },
-          order: [
-            ['updatedAt', 'DESC']
-        ]
+          }
         }
       })
     }
