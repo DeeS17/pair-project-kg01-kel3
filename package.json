@@ -1,0 +1,34 @@
+{
+  "name": "pair-project-kg01-kel3",
+  "version": "1.0.0",
+  "description": "Pair Project Phase 1 Kelompok 3 branch KG01",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeeS17/pair-project-kg01-kel3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DeeS17/pair-project-kg01-kel3/issues"
+  },
+  "homepage": "https://github.com/DeeS17/pair-project-kg01-kel3#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "nodemailer": "^6.4.10",
+    "path": "^0.12.7",
+    "pg": "^8.2.1",
+    "sequelize": "^6.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

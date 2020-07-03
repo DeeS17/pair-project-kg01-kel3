@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('partials/page-title') %>
+</head>
+<body>
+    <%- include('partials/navbar-user') %>
+    <div class="container">
+        <div>
+            <table>
+                <tr>
+                    <th>Item's name</th>
+                    <th><%= item.name %></th>
+                </tr>
+                <tr>
+                    <th>Example</th>
+                    <th><img src="<%= item.imageURL %>" alt=""></th>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <th><%= item.price %></th>
+                </tr>
+                <tr>
+                    <th>Stock</th>
+                    <th><%= item.stock %></th>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <form action="/item/buy/<%= item.id %>" method="post">
+                <div class="form-group">
+                    <label for="quantity">Quantity</label><br>
+                    <input class="form-control" type="text" name="quantity" id="quantity">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-outline-primary btn-sm" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('partials/page-title') %>
+</head>
+<body>
+    <%- include('partials/navbar-seller', {usernameLogged}) %>
+    <% if(usernameLogged) { %>
+        <div class="container">
+            <a href="/transaction/create">Add Transaction</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>User Id</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% transactions.forEach((transaction, index) => { %>
+                        <tr>
+                            <th><%= index + 1 %></th>
+                            <th><%= transaction.UserId %></th>
+                            <th>
+                                <a href="/transaction/<%= transaction.id %>">Detail</a>
+                            </th>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('partials/page-title') %>
+</head>
+<body>
+    <%- include('partials/navbar-seller', {usernameLogged}) %>
+    
+    <div class="container">
+        <h1> <%= title %> </h1>
+    
+        <%- include('./partials/loginValidator.ejs', {errors}) %>
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="username"> Username </label>
+                <input class="form-control" type="text" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password"> Password </label>
+                <input class="form-control"  type="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-outline-primary btn-sm" type="submit"> login </button>
+            </div>
+        </form>
+    </div>
+
+    <%- include('partials/footer') %>
+</body>
+</html>
