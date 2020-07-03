@@ -12,7 +12,7 @@ class LoginController {
         // console.log(errors)
 
         let usernameLogged = req.session.username
-        res.render('Login', { title: `Login`, usernameLogged, errors})
+        res.render('login', { title: `Login`, usernameLogged, errors})
     }
 
     static loginPost(req, res) {
