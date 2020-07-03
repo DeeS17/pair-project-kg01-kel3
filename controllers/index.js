@@ -10,7 +10,11 @@ class Controller {
         const title = req.query;
 
         if(!title.keyword) {
-            Item.findAll()
+            Item.findAll({
+                order: [
+                    ['updatedAt', 'DESC']
+                ]
+            })
                 .then((items) => {
                     res.render('index', {items, usernameLogged, timeDifference, numberWithCommas});
                 })
